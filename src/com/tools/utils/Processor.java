@@ -24,14 +24,14 @@ public class Processor {
                 int last = line.lastIndexOf("\""); //单引号最后一次出现的位置
                 String strValue = line.substring(first + 1, last);//截取后变成新的字符串
                 // 生成变量的引用
-                String name = "cache_" + StringUtil.getLetters(strValue);
+                String name = "str_" + StringUtil.getLetters(strValue);
                 Log.log(strValue);
                 // 插入变量的引用
-                String lineReplace = line.replace( strValue , "Constant." + name);
+                String lineReplace = line.replace( "\"" + strValue + "\"", "LocalEncryptUtil.decrypt(Constant." + name + ")");
                 // 去掉引号
-                String sourceLine = lineReplace.replaceAll("\"", "");
+//                String sourceLine = lineReplace.replaceAll("\"", "");
                 // 加入生成的原始语句
-                sourceList.add(sourceLine);
+                sourceList.add(lineReplace);
                 if (!nameSet.contains(name)) {
                     constantStrList.add("public static final String " + name + " = " + "\"" + strValue + "\";");
                     nameSet.add(name);

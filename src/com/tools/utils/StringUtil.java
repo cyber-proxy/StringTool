@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 public class StringUtil {
     public static String getLetters(String str) {
 
-        // 除了字母数字下划线之外的字符为非法字符
+        // 字母数字下划线之外的字符为非法字符
         Pattern pattern = Pattern.compile("[^a-zA-Z]");
         Matcher matcher = pattern.matcher(str);
         StringBuffer buffer = new StringBuffer();

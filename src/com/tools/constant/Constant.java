@@ -5,19 +5,28 @@ package com.tools.constant;
  * @des
  */
 public class Constant {
-    public final static String txt ="" +
-            " newFile = new File(gameCachePath + File.separator + pkgName + \"/files/yume_android_sdk\");\n" +
-            "                            if (newFile != null && newFile.exists()) {\n" +
-            "                                if (isIgnorePath(newFile.getAbsolutePath())) {\n" +
-            "                                    continue;\n" +
-            "                                }\n" +
-            "                                if (isAppInstalled(pkgName)) {\n" +
-            "                                    addCacheJunkFile(newFile, \"\", pkgName, mContext.getString(R.string.clean_str_cache_name),\n" +
-            "                                            false, true, 0);\n" +
-            "                                } else {\n" +
-            "                                    pathGameSets.add(newFile.getAbsolutePath());\n" +
-            "                                }\n" +
-            "                            }\n" +
+    public final static String txt ="  for (int ii = 0; ii < jArray.length(); ii++) {\n" +
+            "                    String sPath = jArray.getJSONObject(ii).optString(\"path\");\n" +
+            "                    if (!TextUtils.isEmpty(sPath) && sPath.equals(customPath)) {\n" +
+            "                        jArray.getJSONObject(ii).put(\"isAllFiletypes\", cf.isAllFiletypes);\n" +
+            "                        jArray.getJSONObject(ii).put(\"isCustomtypes\", cf.isCustomtypes);\n" +
             "\n" +
-            "                            newFile = new File(gameCachePath + File.separator + pkgName + \"/files/.vungle\");";
+            "                        jArray.getJSONObject(ii).put(\"isFilesonly\", cf.isFilesonly);\n" +
+            "                        jArray.getJSONObject(ii).put(\"isFilesAndSubs\", cf.isFilesAndSubs);\n" +
+            "                        jArray.getJSONObject(ii).put(\"isFilesAndSubsAll\", cf.isFilesAndSubsAll);\n" +
+            "\n" +
+            "                        if (cf.isCustomtypes && cf.listTypes != null) {\n" +
+            "                            jAarryTypes = new JSONArray();\n" +
+            "                            for (String filetype : cf.listTypes) {\n" +
+            "                                jAarryTypes.put(filetype);\n" +
+            "                            }\n" +
+            "                        }\n" +
+            "\n" +
+            "                        if (jAarryTypes != null) {\n" +
+            "                            jArray.getJSONObject(ii).put(\"typeslist\", jAarryTypes);\n" +
+            "                        } else {\n" +
+            "                            jArray.getJSONObject(ii).put(\"typeslist\", null);\n" +
+            "                        }\n" +
+            "                    }\n" +
+            "                }";
 }
